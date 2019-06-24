@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>Paciente {{data.nome}}</h1>
+<div mat-dialog-content>
+  <p>Data de Nascimento: <b>{{data.nascimento | date: 'dd/MM/yyyy'}}</b></p>
+  <p>Início: <b>{{data.inicio | date: 'dd/MM/yyyy HH:mm'}}</b></p>
+  <p>Fim: <b>{{data.fim | date: 'dd/MM/yyyy HH:mm'}}</b></p>
+  
+  <p>Observações: <b>{{data.observacao}}</b></p>
+
+
+ 
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="delete()" >Apagar</button>
+    <span style="flex: 1 1 auto" ></span>  
+  <button mat-button  routerLink="/agenda/editar/{{data.id}}" (click)="onNoClick()">Editar</button>
+  
+  <button mat-button (click)="onNoClick()"  cdkFocusInitial>OK</button>
+</div>

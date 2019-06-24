@@ -1,0 +1,102 @@
+<form class="full-width" [formGroup]="formulario" (ngSubmit)="onSubmit()">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Nome do Paciente" formControlName="paciente">
+    <mat-error *ngIf="formulario.controls['paciente'].hasError('required')">
+      O Nome do Paciente é obrigatório.
+    </mat-error>
+    <mat-error *ngIf="formulario.controls['paciente'].hasError('maxLength')">
+      O Nome do Paciente atingiu um limite de caracteres.
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput [matDatepicker]="picker" placeholder="Data de Nascimento" formControlName="nascimento">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker startView="multi-year" [startAt]="startDate"></mat-datepicker>
+    <mat-error *ngIf="formulario.controls['paciente'].hasError('required')">
+      A Data de Nascimento é obrigatório.
+    </mat-error>
+  </mat-form-field>
+  
+  <div class="inline-datetime">
+      <mat-form-field class="date">
+          <input matInput [matDatepicker]="picker_inicio" placeholder="Data e hora inicial da consulta"
+          formControlName="inicio">
+        <mat-datepicker-toggle matSuffix [for]="picker_inicio"></mat-datepicker-toggle>
+        <mat-datepicker #picker_inicio></mat-datepicker>
+        <mat-error *ngIf="formulario.controls['inicio'].hasError('required')">
+          A Data e hora inicial da consulta são obrigatórios.
+        </mat-error>
+        <mat-error *ngIf="formulario.controls['inicio'].hasError('maxTo')">
+          A Data e hora inícial não pode ser maior que a de fim.
+        </mat-error>
+      </mat-form-field>
+      <div class="label">
+          <mat-label>às</mat-label>
+        </div>
+      <mat-form-field class="time">
+      <mat-label>h</mat-label>
+      <mat-select formControlName="inicio_h">
+        <mat-option *ngFor="let item of [].constructor(24); let i = index" [value]="i">
+          {{i}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+      <div class="label">
+        <mat-label>:</mat-label>
+      </div>
+      <mat-form-field class="time">
+      <mat-label>m</mat-label>
+      <mat-select formControlName="inicio_m">
+        <mat-option *ngFor="let item of [].constructor(60); let i = index" [value]="i">
+          {{i}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    </div>
+  <div class="inline-datetime">
+    <mat-form-field class="date">
+      <input matInput [matDatepicker]="picker_fim" placeholder="Data e hora final da consulta" formControlName="fim">
+      <mat-datepicker-toggle matSuffix [for]="picker_fim"></mat-datepicker-toggle>
+      <mat-datepicker #picker_fim></mat-datepicker>
+      <mat-error *ngIf="formulario.controls['fim'].hasError('required')">
+        A Data e hora final da consulta são obrigatórios.
+      </mat-error>
+      <mat-error *ngIf="formulario.controls['fim'].hasError('minTo') ||
+      formulario.controls['fim_h'].hasError('minTo') ||
+      formulario.controls['fim_m'].hasError('minTo')">
+        A Data e hora final não pode ser menor ou igual a de início.
+      </mat-error>
+    </mat-form-field>
+    <div class="label">
+        <mat-label>às</mat-label>
+      </div>
+    <mat-form-field class="time">
+    <mat-label>h</mat-label>
+    <mat-select formControlName="fim_h">
+      <mat-option *ngFor="let item of [].constructor(24); let i = index" [value]="i">
+        {{i}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+    <div class="label">
+      <mat-label>:</mat-label>
+    </div>
+    <mat-form-field class="time">
+    <mat-label>m</mat-label>
+    <mat-select formControlName="fim_m">
+      <mat-option *ngFor="let item of [].constructor(60); let i = index" [value]="i">
+        {{i}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  </div>
+  <mat-form-field class="example-full-width">
+    <textarea matInput placeholder="Observações" formControlName="observacao"></textarea>
+
+    <mat-error *ngIf="formulario.controls['observacao'].hasError('maxLength')">
+      Suas Observações atingiram um limite de caracteres.
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-button type="submit" [disabled]="!formulario.valid">Salvar</button>
+</form>

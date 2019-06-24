@@ -1,0 +1,35 @@
+.full-width {
+    display: flex;
+   
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+    align-content: flex-start;
+    
+    padding: 20px;
+    >* {
+        width: 100%;
+        max-width: 400px;
+      }
+
+      .inline-datetime {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        align-items: center;
+        .date {
+            flex-grow: 2;
+        }
+          .label{
+              display: inline-block;
+              padding: 10px;
+          }
+          .time{
+              width: 40px;
+          }
+      }
+  }
+  
+  

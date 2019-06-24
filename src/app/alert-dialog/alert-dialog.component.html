@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+<div mat-dialog-content [ngClass]="data.type">
+  <ul>
+    <li *ngFor="let item of data.body">{{item}}</li>
+  </ul>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="1"  cdkFocusInitial>OK</button>
+</div>

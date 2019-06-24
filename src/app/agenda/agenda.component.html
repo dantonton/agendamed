@@ -1,0 +1,39 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="nome">
+    <th mat-header-cell *matHeaderCellDef> Nome </th>
+    <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="inicio">
+    <th mat-header-cell *matHeaderCellDef> Início </th>
+    <td mat-cell *matCellDef="let element"> {{element.inicio | date: 'dd/MM/yyyy HH:mm'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="fim">
+      <th mat-header-cell *matHeaderCellDef> Fim </th>
+      <td mat-cell *matCellDef="let element"> {{element.fim | date: 'dd/MM/yyyy HH:mm'}} </td>
+    </ng-container>
+
+  <ng-container matColumnDef="observacao">
+    <th mat-header-cell *matHeaderCellDef> Observações </th>
+    <td mat-cell *matCellDef="let element"> {{element.observacao}} </td>
+  </ng-container>
+  <ng-container matColumnDef="detalhe">
+      <th mat-header-cell *matHeaderCellDef>
+        
+      </th>
+      <td mat-cell *matCellDef="let element">
+          <button mat-button (click)="openDialog(element)">...mais</button>
+      </td>
+    </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
